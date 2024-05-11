@@ -13,7 +13,7 @@ public class Circle : Figure
     internal sealed override void Validate()
     {
         var validator = new CircleValidator(this);
-        if (validator.IsValid)
+        if (!validator.Validate())
             throw new ArgumentException(string.Join("\n", validator.Errors));
     }
 }
@@ -27,9 +27,9 @@ internal class CircleValidator : FigureValidator
         _circle = circle;
     }
 
-    public sealed override bool Validate()
+    public override bool Validate()
     {
-        if (_circle.Radius <= 0)
+        if (_circle.Radius <= 0.0)
         {
             IsValid = false;
             Errors.Add("Радиус должен быть больше либо равен нулю.");
