@@ -1,0 +1,18 @@
+﻿version: '3.3'
+
+services:
+  mssql:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Admin321321a"
+    ports:
+      - 1433:1433
+    volumes:
+      - my-volume:/var/opt/mssql
+
+volumes:
+  my-volume:
